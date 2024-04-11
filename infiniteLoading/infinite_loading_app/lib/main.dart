@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:infinite_loading_app/view/normalPagination.dart';
+import 'package:infinite_loading_app/view/test.dart';
 import 'package:infinite_loading_app/view/usingRiverpod.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pagination Example',
-      home: PostsView(),
+      home: TestT(),
     );
   }
 }
