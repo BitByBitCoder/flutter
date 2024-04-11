@@ -1,0 +1,45 @@
+import 'dart:convert';
+
+import 'package:app/models/user.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+class AuthService {
+  static const String _baseUrl = 'https://your-api.com';
+
+  Future<User?> signIn(String email, String password) async {
+    // ... (sign-in logic)
+  }
+
+  Future<User?> signUp(String email, String password, String name) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/auth/signup'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'email': email,
+        'password': password,
+        'name': name,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final user = User.fromJson(jsonDecode(response.body));
+      await _saveUserToPreferences(user);
+      return user;
+    } else {
+      throw Exception('Failed to sign up');
+    }
+  }
+
+  Future<User?> getLoggedInUser() async {
+    // ... (get logged-in user logic)
+  }
+
+  Future<void> _saveUserToPreferences(User user) async {
+    // ... (save user to preferences logic)
+  }
+
+  Future<void> signOut() async {
+    // ... (sign-out logic)
+  }
+}
