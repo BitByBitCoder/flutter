@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:r_pagination/Lists_screens/first.dart';
+import 'package:r_pagination/Lists_screens/five.dart';
+import 'package:r_pagination/Lists_screens/four.dart';
 import 'package:r_pagination/Lists_screens/second.dart';
+import 'package:r_pagination/Lists_screens/six.dart';
 import 'package:r_pagination/controller/comments_controller.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -67,13 +70,23 @@ class _PageViewState extends ConsumerState<PageView> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            Text('horizontal listview builder'),
             FirstScreen(),
             SizedBox(
               height: 10,
             ),
+            Text('listview builder normal and fixed height by children'),
             SecondScreen(),
+            Text('horizontal listview builder'),
             FirstScreen(),
+            Text('listview builder normal and fixed height by children'),
             SecondScreen(),
+            Text('Gridview count builder normal and fixed height by children'),
+            FourScreen(),
+            Text('grid view builder '),
+            FiveScreen(),
+            FiveScreen(),
+            SixScreen()
           ],
         ),
       ),

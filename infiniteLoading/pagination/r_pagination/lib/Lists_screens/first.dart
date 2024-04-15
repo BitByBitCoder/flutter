@@ -22,6 +22,7 @@ class _FirstScreenState extends ConsumerState<FirstScreen> {
   void _scrollListener() {
     if (scontroller.position.pixels == scontroller.position.maxScrollExtent &&
         !_isloading) {
+      print('exten');
       setState(() {
         _isloading = true;
       });
@@ -43,44 +44,45 @@ class _FirstScreenState extends ConsumerState<FirstScreen> {
   Widget build(BuildContext context) {
     final data = ref.watch(commentControllerProvider);
     return Container(
-        width: MediaQuery.of(context).size.width,
-        height: 200,
-        child: data.when(data: (data) {
-          return ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              controller: scontroller,
-              itemCount: data.length + 1,
-              itemBuilder: (context, index) {
-                if (index < data.length) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.amber),
-                      height: 200,
-                      width: MediaQuery.of(context).size.width,
-                      child: Text('hello'),
-                    ),
-                  );
-                } else {
-                  return _isloading
-                      ? Center(child: CircularProgressIndicator())
-                      : Container(
-                          child: Text(''),
-                          height: 200,
-                          width: MediaQuery.of(context).size.width,
-                        ); // Return an empty container when not loading
-                }
-              });
-        }, error: (error, StackTrace) {
-          return Center(
-            child: Text('error'),
-          );
-        }, loading: () {
-          Center(child: Text('loading'));
-        }));
+      width: MediaQuery.of(context).size.width,
+      height: 200,
+      child: data.when(data: (data) {
+        return ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            controller: scontroller,
+            itemCount: data.length + 1,
+            itemBuilder: (context, index) {
+              if (index < data.length) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.amber),
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: Text('hello'),
+                  ),
+                );
+              } else {
+                return _isloading
+                    ? Center(child: CircularProgressIndicator())
+                    : Container(
+                        child: Text(''),
+                        height: 200,
+                        width: MediaQuery.of(context).size.width,
+                      ); // Return an empty container when not loading
+              }
+            });
+      }, error: (error, StackTrace) {
+        return Center(
+          child: Text('error'),
+        );
+      }, loading: () {
+        Center(child: Text('loading'));
+      }),
+    );
   }
 }
