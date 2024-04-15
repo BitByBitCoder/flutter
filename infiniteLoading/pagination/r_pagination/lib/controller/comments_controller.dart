@@ -18,8 +18,8 @@ class CommentsController extends StateNotifier<AsyncValue<List<Comment>>> {
   int _page = 1;
 
   void fetchCommentController() async {
-    // if (_isLoading) return;
-    // _isLoading = true;
+    if (_isLoading) return;
+    _isLoading = true;
     try {
       List<Comment> newComments = await repocomm.fetchComments(1);
 
